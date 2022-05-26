@@ -1,0 +1,14 @@
+@import './common.scss';
+
+/deep/.el-table {
+	thead.is-group th.el-table__cell .el-table__header tr,
+	.el-table__header th {
+		height: $headerHeight !important;
+		padding: 0;
+		color: #fff;
+		background-color: $dark;
+	}
+	.el-table__column-filter-trigger {
+		margin-left: 3px;
+	}
+}
