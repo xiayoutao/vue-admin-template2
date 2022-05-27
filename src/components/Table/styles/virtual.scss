@@ -1,9 +1,6 @@
 @import './common.scss';
 
 /deep/ .elx-table {
-	// .elx-header--row .elx-header--column.col--fixed {
-	// 	cursor: no-drop;
-	// }
 	&.elx-editable .elx-body--column,
 	.elx-body--column.col--ellipsis {
 		// 设置单元格高度
@@ -35,6 +32,8 @@
 		background-color: rgba($primary, 0.1);
 	}
 
+	.elx-body--row.row--hover,
+	.elx-body--row.row--hover.row--current,
 	.elx-body--row.row--checked,
 	.elx-body--row.row--current,
 	.elx-body--row.row--radio {

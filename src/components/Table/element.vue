@@ -26,7 +26,7 @@
 				border
 				fit
 				:highlight-current-row="
-					getPropsByDefault('highlight-current-row', true)
+					getPropsByDefault('highlight-current-row', false)
 				"
 				:header-cell-class-name="headerCellClassName"
 				:height="tableHeight"
@@ -65,7 +65,16 @@
 							:fixed="false"
 							:sortable="false"
 							v-for="(subitem, subindex) in item.children || []"
-						></el-table-column>
+						>
+							<template slot="header" v-if="subitem.required">
+								<span class="required">*</span>
+								{{ subitem.label }}
+							</template>
+						</el-table-column>
+						<template slot="header" v-if="item.required">
+							<span class="required">*</span>
+							{{ item.label }}
+						</template>
 						<template
 							slot-scope="scope"
 							v-if="(item.children || []).length === 0"
@@ -85,6 +94,10 @@
 						:column-key="item.prop"
 						v-else-if="isFunction(item.formatter)"
 					>
+						<template slot="header" v-if="item.required">
+							<span class="required">*</span>
+							{{ item.label }}
+						</template>
 						<el-table-column
 							:key="subindex"
 							v-bind="subitem"
@@ -92,7 +105,12 @@
 							:fixed="false"
 							:sortable="false"
 							v-for="(subitem, subindex) in item.children || []"
-						></el-table-column>
+						>
+							<template slot="header" v-if="subitem.required">
+								<span class="required">*</span>
+								{{ subitem.label }}
+							</template>
+						</el-table-column>
 					</el-table-column>
 					<!-- 自定义 end -->
 					<el-table-column
@@ -101,6 +119,10 @@
 						:column-key="item.prop"
 						v-else-if="!item.showType"
 					>
+						<template slot="header" v-if="item.required">
+							<span class="required">*</span>
+							{{ item.label }}
+						</template>
 						<el-table-column
 							:key="subindex"
 							v-bind="subitem"
@@ -108,7 +130,12 @@
 							:fixed="false"
 							:sortable="false"
 							v-for="(subitem, subindex) in item.children || []"
-						></el-table-column>
+						>
+							<template slot="header" v-if="subitem.required">
+								<span class="required">*</span>
+								{{ subitem.label }}
+							</template>
+						</el-table-column>
 					</el-table-column>
 					<el-table-column
 						:key="item.prop + index"
@@ -116,6 +143,10 @@
 						:column-key="item.prop"
 						v-else
 					>
+						<template slot="header" v-if="item.required">
+							<span class="required">*</span>
+							{{ item.label }}
+						</template>
 						<el-table-column
 							:key="subindex"
 							v-bind="subitem"
@@ -123,7 +154,12 @@
 							:fixed="false"
 							:sortable="false"
 							v-for="(subitem, subindex) in item.children || []"
-						></el-table-column>
+						>
+							<template slot="header" v-if="subitem.required">
+								<span class="required">*</span>
+								{{ subitem.label }}
+							</template>
+						</el-table-column>
 						<template
 							slot-scope="scope"
 							v-if="(item.children || []).length === 0"
@@ -154,8 +190,8 @@
 </template>
 
 <script>
-import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 import TableMixin from './mixins/table';
+import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
 export default {
 	mixins: [TableMixin],

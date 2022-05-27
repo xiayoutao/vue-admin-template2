@@ -25,6 +25,7 @@
 			.table-body {
 				tbody {
 					tr {
+						border-bottom-color: #c1c1c1;
 						&:hover {
 							td {
 								border-right-color: #d8cbb1;
@@ -76,12 +77,6 @@
 					text-align: center;
 					background-color: $dark;
 
-					.required {
-						margin-right: 3px;
-						color: $danger;
-						vertical-align: middle;
-					}
-
 					&:last-child {
 						border-right: none;
 					}
@@ -122,6 +117,7 @@
 					}
 				}
 				td {
+					box-sizing: border-box;
 					height: $height;
 					padding: 5px;
 					border-right: 1px solid #e8eaec;

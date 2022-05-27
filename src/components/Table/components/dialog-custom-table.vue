@@ -46,9 +46,6 @@
 			</el-checkbox-group>
 		</div>
 		<template #footer>
-			<!-- <el-button type="warning" icon="el-icon-time" @click="handleReset()">
-				重置
-			</el-button> -->
 			<el-button type="primary" icon="el-icon-check" @click="handleSubmit()">
 				提交
 			</el-button>
@@ -156,7 +153,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/styles/tabs.scss';
 .keys-show,
 .keys-fixed {
 	transition: all 0.3s;

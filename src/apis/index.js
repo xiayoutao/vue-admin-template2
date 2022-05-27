@@ -76,4 +76,7 @@ export default {
 	region: {
 		allTree: '/api/running-system/region/all-tree',
 	},
+	demos: {
+		page: '/api/running-demo/demo/page',
+	},
 };

@@ -127,8 +127,8 @@
 </template>
 
 <script>
-import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 import TableMixin from './mixins/table';
+import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 import TableColgroup from './components/TableColgroup';
 
 export default {
@@ -159,6 +159,29 @@ export default {
 	computed: {
 		dataList() {
 			return this.data;
+		},
+	},
+	watch: {
+		checkFlag: {
+			handler(val) {
+				const selected = val.filter((flag) => !!flag);
+				if (selected.length === this.dataList.length) {
+					this.checkAllFlag = true;
+				} else if (selected.length > 0) {
+					this.checkAllFlag = false;
+					this.indeterminate = true;
+				} else {
+					this.checkAllFlag = false;
+					this.indeterminate = false;
+				}
+			},
+			deep: true,
+		},
+		tableSelection: {
+			handler(val) {
+				this.$emit('selection-change', val);
+			},
+			deep: true,
 		},
 	},
 	created() {
@@ -252,28 +275,8 @@ export default {
 				},
 			});
 		},
-	},
-	watch: {
-		checkFlag: {
-			handler(val) {
-				const selected = val.filter((flag) => !!flag);
-				if (selected.length === this.dataList.length) {
-					this.checkAllFlag = true;
-				} else if (selected.length > 0) {
-					this.checkAllFlag = false;
-					this.indeterminate = true;
-				} else {
-					this.checkAllFlag = false;
-					this.indeterminate = false;
-				}
-			},
-			deep: true,
-		},
-		tableSelection: {
-			handler(val) {
-				this.$emit('selection-change', val);
-			},
-			deep: true,
+		doLayout() {
+			this.checkGutter();
 		},
 	},
 };

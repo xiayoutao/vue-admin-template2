@@ -5,7 +5,6 @@ import { formatTableColumn } from '../utils/util';
 import { toFixed } from '@/utils/format';
 
 export default {
-	inheritAttrs: false,
 	components: {
 		CellSlot,
 		DialogCustomTable,
@@ -207,7 +206,12 @@ export default {
 		handleTableCustom({ hideColumns, fixedColumns }) {
 			this.hideColumns = hideColumns;
 			this.fixedColumns = fixedColumns;
-			this.callTableFn('refreshColumn');
+			this.doLayout(true);
+			this.$nextTick(async () => {
+				this.callTableFn('refreshColumn');
+				await this.sleep(50);
+				this.callTableFn('pagingScrollTopLeft', 0, 1); // fix: 修复虚拟表格去掉固定列样式问题
+			});
 		},
 		// 获取表格参数
 		getPropsByDefault(key, defaultValue) {
@@ -259,6 +263,8 @@ export default {
 			handler(val) {
 				if (val && val.length > 0) {
 					localStorage.setItem(this.tableId + '_fixed_columns', val); // 缓存到本地
+				} else {
+					localStorage.removeItem(this.tableId + '_fixed_columns'); // 缓存到本地
 				}
 				let columnList = [];
 				for (let i = 0, len = this.columns.length; i < len; i++) {
@@ -280,6 +286,8 @@ export default {
 			handler(val) {
 				if (val && val.length > 0) {
 					localStorage.setItem(this.tableId + '_hide_columns', val); // 缓存到本地
+				} else {
+					localStorage.removeItem(this.tableId + '_hide_columns'); // 缓存到本地
 				}
 				this.callTableFn('refreshColumn');
 				this.doLayout();
@@ -291,6 +299,8 @@ export default {
 			handler(val) {
 				if (val && val.length > 0) {
 					localStorage.setItem(this.tableId + '_sort_columns', val); // 缓存到本地
+				} else {
+					localStorage.removeItem(this.tableId + '_sort_columns'); // 缓存到本地
 				}
 				this.callTableFn('refreshColumn');
 				this.doLayout();

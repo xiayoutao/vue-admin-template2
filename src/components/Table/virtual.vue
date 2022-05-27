@@ -31,6 +31,9 @@
 					checkMethod: getPropsByDefault('selectable', () => true),
 					highlight: getPropsByDefault('highlight', true),
 				}"
+				:highlight-current-row="
+					getPropsByDefault('highlight-current-row', false)
+				"
 				:data-changes-scroll-top="
 					getPropsByDefault('data-changes-scroll-top', false)
 				"
@@ -213,6 +216,9 @@ export default {
 		reloadData(data) {
 			if (this.$refs.plxTable) {
 				this.$refs.plxTable.reloadData(data);
+			}
+			if (this.isFunction(this.$listeners['selection-change'])) {
+				this.$listeners['selection-change']([]);
 			}
 		},
 		handleSetFilter($panel, option, item) {

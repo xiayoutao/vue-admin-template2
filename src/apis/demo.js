@@ -1,9 +1,9 @@
 import APIs from '.';
 import request, { handle } from '@/utils/http';
 
-export async function car_info(params) {
+export async function pageList(params) {
 	const res = await request({
-		url: APIs.common.car_info,
+		url: APIs.demos.page,
 		method: 'get',
 		params,
 	});

@@ -20,6 +20,13 @@ $height: 34px;
 		}
 	}
 }
+.table-wrapper {
+	.required {
+		margin-right: 3px;
+		color: $danger;
+		vertical-align: middle;
+	}
+}
 
 .pagination-wrapper {
 	margin-top: 5px;

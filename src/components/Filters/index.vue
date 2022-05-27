@@ -17,6 +17,7 @@
 				v-bind="item"
 				v-model="dataForm[item.key]"
 				:prepend-value.sync="dataForm[item.selectKey]"
+				:prepend-width="item.prependWidth"
 				:options="item.options"
 				v-on="item.events"
 				v-if="item.type === 'input'"
@@ -62,6 +63,7 @@
 				<form-select
 					v-model="dataForm[item.selectKey]"
 					:options="item.options"
+					:clearable="false"
 					style="width: 100px; margin-right: 5px"
 					v-if="item.prepend === 'select'"
 				></form-select>
@@ -214,12 +216,12 @@ export default {
 				}
 				this.timeDiff = now;
 				this.dataForm = { ...this.defaultValues }; // 重置
-				const data = this.getSearchParams();
+				const data = this.getParams();
 				this.$emit('change', { ...data });
 			}
 		},
 		search() {
-			let data = this.getSearchParams();
+			let data = this.getParams();
 			if (this.isFunction(this.handle)) {
 				// 如果有传搜索条件的处理方法，则使用该方法处理参数
 				data = this.handle(data);
@@ -227,7 +229,7 @@ export default {
 			this.$emit('change', { ...data });
 		},
 		// 根据dataForm值，返回相应的过滤条件
-		getSearchParams() {
+		getParams() {
 			const filterData = {};
 			this.dataList.forEach((item) => {
 				const val = this.dataForm[item.key];
@@ -315,7 +317,7 @@ export default {
 				...data,
 				key: inputHasSelect
 					? `key_${data.type}_${index}`
-					: `${data.key || 'key'}_${index}`,
+					: `${data.key || 'key'}`,
 				selectKey: inputHasSelect
 					? `select_${data.type}_${index}`
 					: `${data.key || 'select'}_${index}`,

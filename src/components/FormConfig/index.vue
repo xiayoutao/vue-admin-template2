@@ -277,8 +277,33 @@ export default {
 			dataForm: {}, // 表单数据
 		};
 	},
+	watch: {
+		value: {
+			handler(val) {
+				if (!isObjectEqual(val, this.dataForm)) {
+					// 传入的值和dataForm不一致，才给dataForm赋值。否则会出现死循环
+					this.dataForm = { ...val };
+				}
+			},
+			deep: true,
+			immediate: true,
+		},
+		dataForm: {
+			handler(val) {
+				this.$emit('input', { ...val });
+			},
+			deep: true,
+		},
+		// fields: {
+		// 	handler() {
+		// 		this.reloadRules(); // 处理表单校验规则
+		// 	},
+		// 	deep: true,
+		// 	immediate: true,
+		// },
+	},
 	created() {
-		this.handleRules(); // 处理表单校验规则
+		this.reloadRules(); // 处理表单校验规则
 	},
 	methods: {
 		validate(callback) {
@@ -287,7 +312,14 @@ export default {
 			});
 		},
 		resetFields() {
-			this.$refs.dataForm.resetFields();
+			if (this.$refs.dataForm) {
+				this.$refs.dataForm.resetFields();
+			}
+		},
+		clearValidate() {
+			if (this.$refs.dataForm) {
+				this.$refs.dataForm.clearValidate();
+			}
 		},
 		// 处理表单字段配置
 		handleFields(fields) {
@@ -334,7 +366,7 @@ export default {
 			return _fields;
 		},
 		// 处理表单字段的校验规则
-		handleRules() {
+		reloadRules() {
 			let _rules = {};
 			if (this.aloneRules) {
 				_rules = this.rules;
@@ -344,6 +376,12 @@ export default {
 					const element = this.fields[index];
 					if (element.rules) {
 						_rules[element.prop] = element.rules;
+					}
+					if (element.rules1 && element.prop1) {
+						_rules[element.prop1] = element.rules1;
+					}
+					if (element.rules2 && element.prop2) {
+						_rules[element.prop2] = element.rules2;
 					}
 				}
 			}
@@ -395,24 +433,6 @@ export default {
 		},
 		hasValue(val) {
 			return this.isDeFined(val) && val !== '';
-		},
-	},
-	watch: {
-		value: {
-			handler(val) {
-				if (!isObjectEqual(val, this.dataForm)) {
-					// 传入的值和dataForm不一致，才给dataForm赋值。否则会出现死循环
-					this.dataForm = { ...val };
-				}
-			},
-			deep: true,
-			immediate: true,
-		},
-		dataForm: {
-			handler(val) {
-				this.$emit('input', { ...val });
-			},
-			deep: true,
 		},
 	},
 };

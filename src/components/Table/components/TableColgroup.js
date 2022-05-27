@@ -5,7 +5,6 @@
 export default {
 	name: 'TableColgroup',
 	functional: true,
-	inheritAttrs: false,
 	props: {
 		columns: Array,
 		gutter: Boolean,

@@ -14,6 +14,7 @@ const mockOption = {
 	role: true,
 	dept: true,
 	region: true,
+	demo: true,
 };
 
 function getModuleMockOpts(page) {

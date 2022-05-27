@@ -4,7 +4,6 @@
 export default {
 	name: 'cellSlot',
 	functional: true,
-	inheritAttrs: false,
 	props: {
 		index: Number,
 		render: Function,

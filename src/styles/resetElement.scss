@@ -80,6 +80,13 @@
 	}
 }
 
+.el-select-dropdown {
+	.el-select-dropdown__item {
+		padding: 0 10px;
+		font-size: 13px;
+	}
+}
+
 .el-textarea {
 	.el-textarea__inner {
 		padding-right: 8px;
@@ -88,7 +95,6 @@
 }
 
 .el-cascader {
-	height: 24px;
 	font-size: 0;
 }
 

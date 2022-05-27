@@ -83,6 +83,8 @@ import {
 	Scrollbar,
 } from 'element-ui';
 
+import { isObject } from 'lodash';
+
 // Vue.use(Autocomplete);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
