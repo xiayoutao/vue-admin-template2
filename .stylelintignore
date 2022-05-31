@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 *.js
 *.png
 *.eot
 *.ttf
+=======
+*.js
+*.png
+*.eot
+*.ttf
+>>>>>>> 375a70ccfc6d442ff0cc85c0f7e7a82aee7d19b9
 *.woff

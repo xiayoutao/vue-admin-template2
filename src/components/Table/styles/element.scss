@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import './common.scss';
 
 /deep/.el-table {
@@ -24,3 +25,31 @@
 		}
 	}
 }
+=======
+@import './common.scss';
+
+/deep/.el-table {
+	.el-table__column-filter-trigger {
+		margin-left: 3px;
+	}
+
+	.el-table__header {
+		.is-group th.el-table__cell,
+		th {
+			height: $headerHeight !important;
+			padding: 0;
+			color: #fff;
+			background-color: $dark;
+		}
+	}
+
+	.el-table__body tr {
+		&.hover-row > td.el-table__cell,
+		&.hover-row.current-row > td.el-table__cell,
+		&.hover-row.el-table__row--striped > td.el-table__cell,
+		&.hover-row.el-table__row--striped.current-row > td.el-table__cell {
+			background-color: rgba($primary, 0.1);
+		}
+	}
+}
+>>>>>>> 375a70ccfc6d442ff0cc85c0f7e7a82aee7d19b9

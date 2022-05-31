@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
 	<el-time-picker
 		ref="timePicker"
@@ -22,4 +23,30 @@ export default {
 		pickerOptions: Object,
 	},
 };
+=======
+<template>
+	<el-time-picker
+		ref="timePicker"
+		v-bind="$attrs"
+		v-model="inputValue"
+		:value-format="valueFormat || format || 'yyyy-MM-dd'"
+		:picker-options="pickerOptions"
+		:placeholder="getPropsByDefault('placeholder', '选择时间')"
+		v-on="$listeners"
+	></el-time-picker>
+</template>
+
+<script>
+import FormMixin from './mixin';
+
+export default {
+	mixins: [FormMixin],
+	props: {
+		value: [String, Number],
+		valueFormat: String,
+		format: String,
+		pickerOptions: Object,
+	},
+};
+>>>>>>> 375a70ccfc6d442ff0cc85c0f7e7a82aee7d19b9
 </script>

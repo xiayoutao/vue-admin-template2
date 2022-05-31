@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export default [
 	{
 		id: 1,
@@ -28,3 +29,35 @@ export default [
 		roleId: 2,
 	},
 ];
+=======
+export default [
+	{
+		id: 1,
+		status: 1,
+		code: null,
+		account: 'admin',
+		name: '管理员',
+		realName: '管理员',
+		avatar: '',
+		email: '',
+		phone: '',
+		birthday: '',
+		sex: 1,
+		roleId: 1,
+	},
+	{
+		id: 2,
+		status: 1,
+		code: null,
+		account: 'user',
+		name: '普通用户',
+		realName: '普通用户',
+		avatar: '',
+		email: '',
+		phone: '',
+		birthday: '',
+		sex: 1,
+		roleId: 2,
+	},
+];
+>>>>>>> 375a70ccfc6d442ff0cc85c0f7e7a82aee7d19b9

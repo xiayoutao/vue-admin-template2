@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $headerHeight: 36px;
 $height: 34px;
 
@@ -32,3 +33,39 @@ $height: 34px;
 	margin-top: 5px;
 	text-align: right;
 }
+=======
+$headerHeight: 36px;
+$height: 34px;
+
+.toolbar-wrapper {
+	margin-bottom: 5px;
+}
+.toolbar-wrapper {
+	@include flex-row(flex-end, space-between);
+
+	.tools-l {
+		@include flex-row(center);
+	}
+	.tools-r {
+		.custom-table {
+			position: relative;
+			margin-top: 5px;
+			color: $primary;
+			font-size: 14px;
+			cursor: pointer;
+		}
+	}
+}
+.table-wrapper {
+	.required {
+		margin-right: 3px;
+		color: $danger;
+		vertical-align: middle;
+	}
+}
+
+.pagination-wrapper {
+	margin-top: 5px;
+	text-align: right;
+}
+>>>>>>> 375a70ccfc6d442ff0cc85c0f7e7a82aee7d19b9
